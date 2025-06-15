@@ -134,7 +134,7 @@ export default function Home() {
             Login
           </Button>
           <p className="text-sm mt-2 text-center">
-            Don't have an account?{" "}
+            Don't have an account?
             <button
               type="button"
               className="text-blue-600 underline"
@@ -199,7 +199,7 @@ export default function Home() {
             Sign Up
           </Button>
           <p className="text-sm mt-2 text-center">
-            Already have an account?{" "}
+            Already have an account?
             <button
               type="button"
               className="text-blue-600 underline"
