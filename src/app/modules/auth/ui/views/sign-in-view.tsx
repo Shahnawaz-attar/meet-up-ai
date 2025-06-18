@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { OctagonAlertIcon } from "lucide-react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -52,9 +53,10 @@ export const SignInView = () => {
       });
       setPending(false);
       router.push("/");
-    } catch (err: any) {
+    } catch {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setPending(false);
-      setError(err?.error?.message || "An unexpected error occurred.");
+      setError("An error occurred while signing in.");
     }
   };
 
@@ -159,10 +161,12 @@ export const SignInView = () => {
           bg-radial from-green-700 to-green-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center
           "
           >
-            <img
+            <Image
               src="/logo.svg"
               alt="Meet.AI Logo"
               className="h-[92px] w-[92px]"
+              width={92}
+              height={92}
             />
             <p className="text- font-semibold text-white">Meet.AI</p>
           </div>
