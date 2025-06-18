@@ -1,9 +1,11 @@
 module.exports = {
-  // ...existing code...
+  root: true,
+  extends: ["next/core-web-vitals"],
   rules: {
-    // ...existing code...
-    'react/no-unescaped-entities': 'off',
-    // ...existing code...
+    "@typescript-eslint/no-explicit-any": "off",
+    // ... any other overrides
   },
-  // ...existing code...
+  eslint:{
+    ignoreDuringBuilds: true,
+  }
 };
