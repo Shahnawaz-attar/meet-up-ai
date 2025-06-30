@@ -54,7 +54,6 @@ export const SignInView = () => {
       setPending(false);
       router.push("/");
     } catch {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setPending(false);
       setError("An error occurred while signing in.");
     }
