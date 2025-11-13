@@ -1,22 +1,48 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
+import { DataTable } from "./components/data-table";
+import { columns } from "./components/columns";
+import { LoadingState } from "@/components/loading-state";
+import { ErrorState } from "./views/error-state";
+import { EmptyState } from "@/components/empty-state";
 
 
 export default function AgentsView() {
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(trpc.agents.getMany.queryOptions());
 
+
+
+ 
+
   return (
-    <div className="flex flex-col p-4 gap-y-4">
-      <h1 className="text-2xl font-bold">Agents</h1>
-      <ul>
-        {data?.map((agent) => (
-          <li key={agent.id} className="p-2 border-b">
-            {agent.name}
-          </li>
-        ))}
-      </ul>
+    <div className="flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4">
+        <DataTable  columns={columns} data={data} />
+        {data.length === 0 && (
+        <EmptyState
+          title="Create your first agent"
+          description="Create an agent to join your meetings. Each agent will follow your instructions and can interact with participants during the call."
+        />
+      )}
     </div>
   );
+}
+
+export const AgentsViewLoading = () => {
+  return (
+    <LoadingState
+      title="Loading Agents"
+      description="This may take a fews econds"
+    />
+  );
+};
+
+export const AgentsViewError = () => {
+  return (
+    <ErrorState
+      title="Error Loading Agents"
+      description="Something went wrong"
+    />
+  )
 }
